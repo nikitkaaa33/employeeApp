@@ -1,8 +1,16 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import "./search-panel.css";
 
-class SearchPanel extends Component {
-	constructor(props) {
+interface SearchPanelProps {
+	onUpdateSearch: (term: string) => void;
+}
+
+interface State {
+	term: string;
+}
+
+class SearchPanel extends Component<SearchPanelProps, State> {
+	constructor(props: SearchPanelProps) {
 		super(props);
 		this.state = {
 			term: "",

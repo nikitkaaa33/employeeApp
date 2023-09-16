@@ -1,6 +1,12 @@
+import React from "react";
 import "./app-info.css";
 
-const AppInfo = ({ increased, employees }) => {
+type AppInfoProps = {
+	increased: number;
+	employees: number;
+};
+
+const AppInfo: React.FC<AppInfoProps> = ({ increased, employees }) => {
 	return (
 		<div className="app-info">
 			<h1>Accounting for employees in the company </h1>

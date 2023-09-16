@@ -1,7 +1,17 @@
-import { Component } from "react";
+import React, { Component, ChangeEvent, FormEvent } from "react";
 import "./employees-add-form.css";
 
-class EmployeesAddForm extends Component {
+interface Props {
+	addNewItem: (name: string, salary: any) => void;
+}
+
+interface State {
+	name: string;
+	salary: number | string;
+	increase: boolean;
+}
+
+class EmployeesAddForm extends Component<Props, State> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -11,12 +21,13 @@ class EmployeesAddForm extends Component {
 		};
 	}
 
-	onValueChange = (e) => {
+	onValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const name = e.target.name as keyof State;
 		this.setState({
-			[e.target.name]: e.target.value,
-		});
+			[name]: e.target.value,
+		} as unknown as Pick<State, keyof State>);
 	};
-	onSubmit = (e) => {
+	onSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		this.props.addNewItem(this.state.name, this.state.salary);
 		this.setState({

@@ -1,7 +1,18 @@
+import React from "react";
 import "./app-filter.css";
 
-const AppFilter = (props) => {
-	const buttonsData = [
+interface IAppFilter {
+	name: "all" | "like" | "moreThan1000";
+	label: string;
+}
+
+interface AppFilterProps {
+	filter: "all" | "like" | "moreThan1000";
+	onFilterSelect: (filter: "all" | "like" | "moreThan1000") => void;
+}
+
+const AppFilter: React.FC<AppFilterProps> = (props) => {
+	const buttonsData: IAppFilter[] = [
 		{ name: "all", label: "All employees" },
 		{ name: "like", label: "For promotion" },
 		{ name: "moreThan1000", label: "Salary over 1000" },
